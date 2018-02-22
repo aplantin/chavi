@@ -1,6 +1,6 @@
 # chavi
 
-The R package chavi performs consensus haplotype detection and visualization. See vignette for an example. 
+The R package chavi performs consensus haplotype detection and visualization. See vignette for sample usage on simulated data. 
 
 # Installation instructions: 
 
