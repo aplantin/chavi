@@ -9,3 +9,4 @@ See vignette for sample usage.
   library(devtools)  <br/>
   install_github("aplantin/chavi")  <br/>
   library(chavi)  <br/>
+
