@@ -6,6 +6,8 @@ chavi identifies and visualizes long shared identity-by-state (IBS) segments
       around that site is expected to be highly conserved among carriers. The 
       similarity and length of this shared segment may be used to better understand 
       the relationships among carriers and the age of the genomic feature.
+      
+See https://aplantin.github.io/chavi/index.html for documentation and usage instructions.  
 
 ## Installation instructions: 
 
