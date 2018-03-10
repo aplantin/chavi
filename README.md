@@ -1,4 +1,4 @@
-# chavi: Consensus Haplotype Detection and Visualization 
+## chavi: Consensus Haplotype Detection and Visualization 
 
 chavi identifies and visualizes long shared identity-by-state (IBS) segments 
       between case haplotypes. It is intended to be used in the setting where a 
@@ -7,7 +7,7 @@ chavi identifies and visualizes long shared identity-by-state (IBS) segments
       similarity and length of this shared segment may be used to better understand 
       the relationships among carriers and the age of the genomic feature.
 
-# Installation instructions: 
+## Installation instructions: 
 
   library(devtools)  <br/>
   install_github("aplantin/chavi")  <br/>
