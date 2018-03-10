@@ -29,6 +29,14 @@ Vocabulary used throughout this document:
 - "Consensus risk haplotype" refers to the stretch of genome shared identically between (nearly) all cases around the site of interest. 
 - "Risk haplotype" refers to the copy of the chromosome for each subject that carries the feature of interest. 
 
+
+## Step 0: Install chavi 
+
+```{r install} 
+library(devtools)
+install_github("aplantin/chavi")
+```
+
 ## Step 1: Load and prepare data 
 
 We assume that the available data include a phased VCF file and a text file with one case subject identifier per line. The VCF file may include other subjects in addition to cases; these will be filtered out for the remainder of the analysis. 
