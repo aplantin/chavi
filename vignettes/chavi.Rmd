@@ -16,9 +16,6 @@ knitr::opts_chunk$set(
   fig.width = 7, fig.height = 3.5, 
   comment = "#>"
 )
-library(devtools)
-install_github("aplantin/chavi")
-library(chavi)
 ```
 
 chavi is a package that identifies and visualizes long shared IBS between case haplotypes. It is intended to be used in the setting where a particular genomic site is of interest (e.g., a mutation site) and the region around that site is expected to be highly conserved among carriers. We also assume that only one haplotype per case subject carries the feature. 
@@ -35,6 +32,7 @@ Vocabulary used throughout this document:
 ```{r install} 
 library(devtools)
 install_github("aplantin/chavi")
+library(chavi)
 ```
 
 ## Step 1: Load and prepare data 
