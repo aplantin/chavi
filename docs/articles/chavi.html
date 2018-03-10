@@ -72,13 +72,29 @@
 <li>“Consensus risk haplotype” refers to the stretch of genome shared identically between (nearly) all cases around the site of interest.</li>
 <li>“Risk haplotype” refers to the copy of the chromosome for each subject that carries the feature of interest.</li>
 </ul>
+<div id="step-0-install-chavi" class="section level2">
+<h2 class="hasAnchor">
+<a href="#step-0-install-chavi" class="anchor"></a>Step 0: Install chavi</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(devtools)
+<span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"aplantin/chavi"</span>)
+<span class="co">#&gt; Downloading GitHub repo aplantin/chavi@master</span>
+<span class="co">#&gt; from URL https://api.github.com/repos/aplantin/chavi/zipball/master</span>
+<span class="co">#&gt; Installing chavi</span>
+<span class="co">#&gt; '/Library/Frameworks/R.framework/Resources/bin/R' --no-site-file  \</span>
+<span class="co">#&gt;   --no-environ --no-save --no-restore --quiet CMD INSTALL  \</span>
+<span class="co">#&gt;   '/private/var/folders/yw/fmxy3ljs5yxf1frzv8b2fbhh0000gn/T/RtmpdFLzaZ/devtools3782667d2e1e/aplantin-chavi-7b31b51'  \</span>
+<span class="co">#&gt;   --library='/Library/Frameworks/R.framework/Versions/3.4/Resources/library'  \</span>
+<span class="co">#&gt;   --install-tests</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Reloading installed chavi</span></code></pre></div>
+</div>
 <div id="step-1-load-and-prepare-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#step-1-load-and-prepare-data" class="anchor"></a>Step 1: Load and prepare data</h2>
 <p>We assume that the available data include a phased VCF file and a text file with one case subject identifier per line. The VCF file may include other subjects in addition to cases; these will be filtered out for the remainder of the analysis.</p>
 <p>The VCF file is converted to a “haplotype” file. Rows are genetic markers, and there is a column labeled POS identifying the position of the genetic markers (in bp or cM). All of the markers must be on a single chromosome. The remaining columns contain the data for each case haplotype. The haplotype identifiers are SUBJ.1 and SUBJ.2 for the first and second copy of the chromosome for the case subject with identifier SUBJ. Other columns may be included and will be ignored.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vcf.file &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">"extdata"</span>, <span class="st">"sim-haps.vcf"</span>, <span class="dt">package =</span> <span class="st">"chavi"</span>)
-case.id.file &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">"extdata"</span>, <span class="st">"sim-case-ids.txt"</span>, <span class="dt">package =</span> <span class="st">"chavi"</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vcf.file &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/system.file">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"sim-haps.vcf"</span>, <span class="dt">package =</span> <span class="st">"chavi"</span>)
+case.id.file &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/system.file">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"sim-case-ids.txt"</span>, <span class="dt">package =</span> <span class="st">"chavi"</span>)
 haps &lt;-<span class="st"> </span><span class="kw"><a href="../reference/vcf2hap.html">vcf2hap</a></span>(vcf.file, case.id.file)</code></pre></div>
 <p>The haplotype file looks like this:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">haps[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]
@@ -89,7 +105,7 @@ haps &lt;-<span class="st"> </span><span class="kw"><a href="../reference/vcf2ha
 <span class="co">#&gt; 4 0.4         1         1         1         1</span>
 <span class="co">#&gt; 5 0.5         1         1         1         1</span></code></pre></div>
 <p>After the haplotype file is loaded, we need to identify which copy of the chromosome carries the feature of interest for each case subject. This procedure assumes there is long IBS shared among case subjects at that site. The data were generated such that the site of interest is from 2.43 to 2.47 cM.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ibs.file &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">"extdata"</span>, <span class="st">"sim-ibs.txt"</span>, <span class="dt">package =</span> <span class="st">"chavi"</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ibs.file &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/system.file">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"sim-ibs.txt"</span>, <span class="dt">package =</span> <span class="st">"chavi"</span>)
 riskhaps &lt;-<span class="st"> </span><span class="kw"><a href="../reference/id_riskhap.html">id_riskhap</a></span>(ibs.file, case.id.file, <span class="dt">site.start =</span> <span class="fl">2.43</span>, <span class="dt">site.end =</span> <span class="fl">2.47</span>)
 riskhaps
 <span class="co">#&gt;  [1] "SUBJID1.2"  "SUBJID2.2"  "SUBJID3.2"  "SUBJID4.1"  "SUBJID5.1" </span>
@@ -175,7 +191,8 @@ riskhaps
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#step-1-load-and-prepare-data">Step 1: Load and prepare data</a></li>
+<li><a href="#step-0-install-chavi">Step 0: Install chavi</a></li>
+      <li><a href="#step-1-load-and-prepare-data">Step 1: Load and prepare data</a></li>
       <li><a href="#step-2-identify-consensus-risk-haplotype">Step 2: Identify consensus risk haplotype</a></li>
       <li><a href="#step-3-visualize-consensus-risk-haplotype">Step 3: Visualize consensus risk haplotype</a></li>
       </ul>
