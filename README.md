@@ -1,5 +1,4 @@
-# chavi
-Consensus haplotype detection and visualization 
+# chavi: Consensus Haplotype Detection and Visualization 
 
 chavi identifies and visualizes long shared identity-by-state (IBS) segments 
       between case haplotypes. It is intended to be used in the setting where a 
