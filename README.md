@@ -9,6 +9,6 @@ chavi identifies and visualizes long shared identity-by-state (IBS) segments
 
 # Installation instructions: 
 
-  % library(devtools)  <br/>
+  library(devtools)  <br/>
   install_github("aplantin/chavi")  <br/>
   library(chavi)  <br/>
